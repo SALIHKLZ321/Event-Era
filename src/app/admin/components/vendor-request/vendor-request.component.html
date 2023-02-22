@@ -1,0 +1,55 @@
+<div class="flex w-screen h-screen text-white overflow-x-hidden">
+    <div class="hidden sm:block ">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="block sm:hidden " *ngIf="menu">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="w-full  h-screen ml-0  ">
+
+        <div class="m-3 ">
+            <button class="text-white block sm:hidden" (click)="menuToggle()">
+                <i class="fa-solid fa-xmark" *ngIf="menu"></i>
+                <i class="fa-solid fa-bars" *ngIf="!menu"></i>
+            </button>
+        </div>
+        <div class=" flex flex-col justify-center mt-5 w-full">
+            <div class="w-full flex justify-center">
+            <h1 class="text-white font-extrabold text-5xl">Vendor Requests</h1>
+            </div>
+            <div class="pt-10">
+                <div class="flex flex-col">
+                    <div class=" sm:-mx-6 lg:-mx-8">
+                      <div class=" w-full py-2 sm:px-6 lg:px-8">
+                        <div class="">
+                          <table class="w-full text-left text-sm font-light">
+                            <thead class="border-b font-medium dark:border-neutral-500 sm:me-12">
+                              <tr>
+                                <th scope="col" class="px-4 py-4">Name</th>
+                                <th scope="col" class="px-4 py-4">Phone</th>
+                                <th scope="col" class="px-4 py-4">Email</th>
+                                <th scope="col" class="px-4 py-4"></th>
+                                <th scope="col" class="px-4 py-4"></th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="border-b dark:border-neutral-500" *ngFor="let vendor of pendingVendors">
+                                <td class="whitespace-nowrap px-4 py-4">{{vendor.firstName}} {{vendor.lastName}}</td>
+                                <td class="whitespace-nowrap px-4 py-4">{{vendor.phone}}</td>
+                                <td class="whitespace-nowrap px-4 py-4">{{vendor.email}}</td>
+                                <td class="whitespace-nowrap px-4 py-4"><button class="shadow bg-green-600 text-black rounded py-2 px-3" (click)="acceptRequest(vendor._id)">Verify</button></td>
+                                <td class="whitespace-nowrap px-4 py-4"><button class="shadow bg-red-700 text-white rounded py-2 px-3" (click)="rejectRequest(vendor._id)">Block</button></td>
+                                
+                              </tr>
+                            </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

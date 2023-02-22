@@ -1,0 +1,18 @@
+<div class="flex w-screen h-screen text-white">
+    <div class="hidden sm:block">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="block sm:hidden" *ngIf="menu">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="w-full  h-screen ml-0  ">
+
+        <div class="m-3  ">
+            <button class="text-white block sm:hidden" (click)="menuToggle()">
+                <i class="fa-solid fa-xmark" *ngIf="menu"></i>
+                <i class="fa-solid fa-bars" *ngIf="!menu"></i>
+            </button>
+        </div>
+    </div>
+    
+</div>

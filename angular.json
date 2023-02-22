@@ -23,9 +23,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/font-awesome/css/font-awesome.min.css",
+              "src/styles.css",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/datatables.net/js/jquery.dataTables.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -97,5 +102,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "3d7c063d-f577-42c7-8ba8-96f0b30957c4"
   }
 }

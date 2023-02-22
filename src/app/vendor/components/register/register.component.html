@@ -1,0 +1,119 @@
+<div class="w-screen h-screen flex items-center justify-center ">
+    <div class="flex justify-center">
+        <div class="rounded-lg shadow-md bg-[#080808a5] max-w-sm shadow-[grey] border-slate-400">
+        <div class="flex justify-center text-center p-[5%] ">
+          <h1 class="font-extrabold text-3xl text-white">Welcome As Vendor!</h1>
+        </div>
+          <div class="p-6 flex justify-center">
+            <div class="flex flex-col">
+               <form (ngSubmit)="onRegister()" [formGroup]="registerForm">
+                <div class="mb-6 w-auto flex flex-row">
+                    <input
+                      type="text"
+                      name="fname"
+                      class="form-control block w-full px-4 py-2 text-xl font-normal text-white bg-black bg-clip-padding border border-solid border-black rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                      id="exampleFormControlInput2"
+                      placeholder='First name...'
+                      formControlName="fname"
+                    />
+
+                    <span class="flex w-[3%]"></span>
+                    <input
+                    type="text"
+                    name="lname"
+                    class="form-control block w-full px-4 py-2 text-xl font-normal text-white bg-black bg-clip-padding border border-solid border-black rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    id="exampleFormControlInput2"
+                    placeholder="Last name..."
+                    formControlName="lname"
+                    
+                  />
+
+                    
+                  </div>
+                  <div class="mb-6 w-auto flex flex-row" *ngIf="(formValues.fname.invalid&&formValues.fname.touched) || (formValues.lname.invalid&&formValues.lname.touched)">
+                    <span class="text-red-600" *ngIf="formValues.fname?.invalid&&formValues.fname?.touched">Please Enter valid first name</span>
+                    <span class="flex w-[5%]"></span>
+                    <span class="text-red-600" *ngIf="formValues.lname?.invalid&&formValues.lname?.touched">Please Enter valid last name</span>
+                  </div>
+                <div class="mb-6">
+                  <input
+                    type="text"
+                    name="email"
+                    class="form-control block w-full px-4 py-2 text-xl font-normal text-white bg-black bg-clip-padding border border-solid border-black rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    id="exampleFormControlInput2"
+                    placeholder="Email address"
+                    formControlName="email"
+                  />
+                </div>
+                <div class="mb-6">
+                  <span class="text-red-600" *ngIf="formValues.email?.invalid&&formValues.email?.touched">Please Enter valid email!!!</span>
+
+                </div>
+                <div class="mb-6 pb">
+                    <input
+                      type="number"
+                      name="phone"
+                      class="form-control block w-full px-4 py-2 text-xl font-normal text-white bg-black bg-clip-padding border border-solid border-black rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                      id="exampleFormControlInput2"
+                      placeholder="Phone"
+                      formControlName="phone"
+                    />
+                    <div class="mb-6">
+                      <span class="text-red-600" *ngIf="formValues.phone?.invalid&&formValues.phone?.touched">Please Enter valid phone number!!!</span>
+                    </div>
+                  </div> 
+      
+                <!-- Password input -->
+                <div class="mb-6 flex flex-row">
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control block w-full px-4 py-2 text-xl font-normal text-white bg-black bg-clip-padding border border-solid border-black rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    id="exampleFormControlInput2"
+                    placeholder="Password"
+                    formControlName="password"
+                  />
+                  <span class="w-[3%]"></span>
+                  <input
+                    type="password"
+                    name="confirm"
+                    class="form-control block w-full px-4 py-2 text-xl font-normal text-white bg-black bg-clip-padding border border-solid border-black rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    id="exampleFormControlInput2"
+                    placeholder="Confirm password"
+                    formControlName="confirm"
+                    (keyup)="confirmPassword()"
+                  />
+                </div>
+                <div class="mb-6 w-auto flex flex-row" *ngIf="(formValues.password.invalid&&formValues.password.touched) || (formValues.confirm.invalid&&formValues.confirm.touched)">
+                  <span class="text-red-600" *ngIf="formValues.password.invalid&&formValues.password.touched">Password is Compulsory</span>
+                  <span class="flex w-[5%]"></span>
+                  <span class="text-red-600" *ngIf="formValues.confirm?.invalid">password Must Match</span>
+                </div>
+      
+                
+      
+                <div class="text-center lg:text-left flex flex-col items-center justify-center">
+                  <button mat-raised-button
+                    type="submit"
+                    [disabled]="registerForm.invalid"
+                    class="inline-block px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-[50%]"
+                    [ngClass]="{'bg-blue-800':!registerForm.invalid}"
+                  >
+                    Register
+                  </button><br>
+                  <p class="text-sm font-semibold mt-2 pt-1 mb-0 text-white">
+                    Already have an account?
+                    <a
+                      routerLink="/vendor/login"
+                      class="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                      >Sign In</a
+                    >
+                  </p>
+                </div>
+                
+             </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
