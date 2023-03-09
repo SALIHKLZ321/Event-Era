@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl:'http://localhost:3000'
+  apiUrl:'http://localhost:3000',
+  s3_region: 'ap-south-1',
+  s3_bucket_name: 'event-era-events',
+  s3_secret: 'ZGq0sM1b4OtUbgPy4vRIcyaoq5Eh6gfTQX/Nu1/0',
+  s3_access: 'AKIASO5SQSTQEWEKBSP5'
 };
 
 /*

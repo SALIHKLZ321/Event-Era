@@ -1,7 +1,7 @@
 import Swal  from 'sweetalert2';
 import { VendorService } from './../../services/vendor.service';
 import { Component, OnInit } from '@angular/core';
-import { res, vendorProfile } from '../../models/vendor.model';
+import { iRes, iVendorProfile } from '../../models/vendor.model';
 
 @Component({
   selector: 'app-vendor-request',
@@ -9,19 +9,22 @@ import { res, vendorProfile } from '../../models/vendor.model';
   styleUrls: ['./vendor-request.component.css']
 })
 export class VendorRequestComponent implements OnInit {
-  menu=false;
+  
   constructor(private VendorService: VendorService) { }
-  pendingVendors:vendorProfile[] | undefined;
+  pendingVendors: iVendorProfile[] | undefined;
+  vendor: boolean | undefined;
 
   ngOnInit(): void {
     this.fetchVendors();
   }
-  menuToggle(){
-    this.menu = !this.menu
-  }
+ 
   fetchVendors(){
     this.VendorService.nonVerifiedVendor().subscribe((res) => {
-      this.pendingVendors=res.vendor
+      this.pendingVendors=res.vendor;
+      this.vendor = true;
+      if (res.vendor.length == 0 ) {
+        this.vendor = false;
+      }
      })
   }
   acceptRequest(id:string | null | undefined){
@@ -35,7 +38,19 @@ export class VendorRequestComponent implements OnInit {
       confirmButtonText: 'Yes, Approve !'
     }).then((result) => {
       if (result.isConfirmed) {
-
+        this.VendorService.verifyVendor(id).subscribe((res) => {
+          let i=0
+          if (res.status == true) {
+            const vendor=this.pendingVendors?.find(e => { 
+              i++;
+              return e._id == id
+            } );
+          }
+          this.pendingVendors?.splice(i-1,1);
+          if (this.pendingVendors?.length == 0) {
+            this.vendor = false;
+          }
+        })
         Swal.fire(
           'Approved!',
           'This vendor Verified.',

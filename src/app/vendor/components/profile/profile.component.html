@@ -1,0 +1,36 @@
+<div class="w-screen h-full flex justify-center ">
+<div class="flex flex-col w-full  h-[100vh] px-10 py-10">
+    <div class="w-full h-[10%] flex justify-center">
+        <h1 class="text-3xl text-white text-bold">Profile</h1>
+    </div>
+    <div class="relative flex flex-col items-center rounded-[20px] w-full h-full mx-auto sm:p-4 bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none">
+        <div class="relative flex h-32 w-full justify-center rounded-xl bg-cover" >
+            <img src='https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/media/banner.ef572d78f29b0fee0a09.png' class="absolute flex h-32 w-full justify-center rounded-xl bg-cover"> 
+            <div class="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
+                <img class="h-full w-full rounded-full" src='{{vendorDetails?.image}}' alt="" *ngIf="vendorDetails?.image"/>
+                <img class="h-full w-full rounded-full" src='../../../../assets/images/user.png' alt="" *ngIf="!vendorDetails?.image"/>
+            </div>
+        </div> 
+        
+        <div class="mt-16 flex flex-col items-center">
+            <div class="pb-8">
+            <button mat-raised-button (click)="openImageModal()" class="p-2 bg-pink-400 rounded text-bold" *ngIf="vendorDetails?.image">Update Image</button>
+            <button mat-raised-button (click)="openImageModal()" class="p-2 bg-pink-400 rounded text-bold" *ngIf="!vendorDetails?.image">Upload Image</button>
+        </div>
+            <h4 class="text-xl font-bold text-navy-700 dark:text-white">
+            {{vendorDetails?.firstName}} {{vendorDetails?.lastName}}
+            </h4>
+            <p class="text-base font-normal text-gray-600">Vendor</p>
+            <p class="text-base font-bold text-gray-600">{{vendorDetails?.email}}</p>
+            <p class="text-base font-bold text-gray-600">{{vendorDetails?.phone}}</p>
+        </div> 
+        <div class="mt-6 mb-10 flex gap-14 md:!gap-14 ">
+            <button class="bg-black p-2 text-white rounded text-bold "> Edit Profile</button>
+        </div >
+        <div class="w-full flex justify-center">
+            <h1 class="text-bold text-2xl text-pink-400">{{events?.length ? events?.length :'0'}} Events Hosted</h1>
+        </div>
+        
+    </div>  
+</div>
+</div>

@@ -1,3 +1,4 @@
+import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
+  menu = false
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
-
+  logout(){
+    this.loginService.logout()
+  }
+  open() {
+    this.menu = true;
+  }
+  close() {
+    this.menu = false;
+  }
 }

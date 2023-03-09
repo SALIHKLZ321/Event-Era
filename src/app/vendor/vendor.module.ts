@@ -9,6 +9,10 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { EventHostComponent } from './components/event-host/event-host.component';
+import { EventComponent } from './components/event/event.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ImageUploadComponent } from './components/modal/image-upload/image-upload.component';
 
 
 @NgModule({
@@ -18,7 +22,11 @@ import { RegisterComponent } from './components/register/register.component';
     SidebarComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    EventHostComponent,
+    EventComponent,
+    ProfileComponent,
+    ImageUploadComponent
   ],
   imports: [
     CommonModule,

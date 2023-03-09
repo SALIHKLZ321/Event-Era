@@ -1,3 +1,4 @@
+import { LoginRegisterService } from '../../services/login-register.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
+  menu=false;
+  constructor(private _loginService: LoginRegisterService ) { }
 
   ngOnInit(): void {
+  }
+  open(){
+    this.menu = true;
+  }
+  close () {
+    this.menu = false;
+  }
+  logout (){
+    this._loginService.logout();
   }
 
 }

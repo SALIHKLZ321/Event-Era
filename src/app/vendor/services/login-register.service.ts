@@ -11,7 +11,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginRegisterService {
-  private vendorToken:string | undefined | null;
+  private token:string | undefined | null;
   vendorAuth = false;
   private tokenTimer:any;
   vendorAuthStatusListener =new Subject<boolean>()
@@ -29,7 +29,7 @@ export class LoginRegisterService {
     this.http.post<{status:boolean, message:string, token:string, expiresIn:number}>(`${environment.apiUrl}/vendor/login`, form)
     .subscribe((res) => {
       const token = res.token;
-      this.vendorToken = token;
+      this.token = token;
       if(token){
         const expiresInDuration = res.expiresIn;
         this.vendorAuth = true;
@@ -45,7 +45,7 @@ export class LoginRegisterService {
     })
   }
   getToken(){
-    return this.vendorToken;
+    return this.token;
   }
   getAuthStatusListener(){
     return this.vendorAuthStatusListener.asObservable();
@@ -55,7 +55,7 @@ export class LoginRegisterService {
   }
 
   logout(){
-    this.vendorToken=null;
+    this.token=null;
     this.vendorAuth=false;
     this.vendorAuthStatusListener.next(false);
     clearTimeout(this.tokenTimer);
@@ -78,12 +78,14 @@ export class LoginRegisterService {
     },duration*1000)
   }
   private saveAuthData(token:string,expirationDate:Date){
-    localStorage.setItem('vendorToken',token);
+    localStorage.setItem('token',token);
+    localStorage.setItem('role','vendor');
     localStorage.setItem('expiration',expirationDate.toISOString());
   }
   private clearAuthData(){
     localStorage.removeItem('vendorToken')
     localStorage.removeItem('expiration')
+    localStorage.removeItem('role')
 
   }
 }

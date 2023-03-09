@@ -1,8 +1,8 @@
-export interface res {
-    vendor: vendorProfile[],
+export interface iRes {
+    vendor: iVendorProfile[],
   }
 
-export interface vendorProfile{
+export interface iVendorProfile{
   _id: string | null | undefined;
     firstName: string | null | undefined;
     lastName: string | null | undefined;

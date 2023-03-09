@@ -6,9 +6,10 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
-import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { AuthInterceptor } from '../common/interceptor/auth.interceptor';
 import { UserRoutingModule } from './user-routing.module';
 import { CommonModule } from '@angular/common';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CommonModule } from '@angular/common';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
+    ProfileComponent,
   ],
   imports: [CommonModule, MaterialModule, FormsModule, UserRoutingModule],
 })

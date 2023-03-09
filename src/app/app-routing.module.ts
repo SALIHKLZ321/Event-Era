@@ -1,5 +1,3 @@
-import { UserComponent } from './user/user.component';
-import { VendorComponent } from './vendor/vendor.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

@@ -9,6 +9,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { VendorRequestComponent } from './components/vendor-request/vendor-request.component';
 import { VendorComponent } from './components/vendor/vendor.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 
@@ -20,6 +21,7 @@ import { VendorComponent } from './components/vendor/vendor.component';
     SidebarComponent,
     VendorRequestComponent,
     VendorComponent,
+    HeaderComponent,
     
   ],
   imports: [

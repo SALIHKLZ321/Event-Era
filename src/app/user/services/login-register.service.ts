@@ -30,8 +30,12 @@ export class LoginRegisterService {
     })
   }
   login(form:Partial<Login>){
-    this.http.post<{status:string,token:string,expiresIn:number}>(`${environment.apiUrl}/user/sign-in`, form)
+    this.http.post<{status:boolean,token:string,expiresIn:number}>(`${environment.apiUrl}/user/sign-in`, form)
     .subscribe((res) => {
+      if(res.status == false) {
+        Swal.fire('Invalid Credential');
+        return;
+      }
       const token = res.token
       this.token = token;
       if(token){ 
@@ -83,6 +87,7 @@ export class LoginRegisterService {
   }
   private saveAuthData(token:string,expirationDate:Date){
     localStorage.setItem('token',token);
+    localStorage.setItem('role','user');
     localStorage.setItem('expiration',expirationDate.toISOString());
   }
   private getAuthData(){
@@ -98,6 +103,7 @@ export class LoginRegisterService {
   }
   private clearAuthData(){
     localStorage.removeItem('token')
+    localStorage.removeItem('role')
     localStorage.removeItem('expiration')
   }
 }

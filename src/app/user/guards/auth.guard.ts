@@ -1,3 +1,4 @@
+import { CommonServiceService } from './../../common/common-service.service';
 
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
@@ -6,13 +7,13 @@ import { LoginRegisterService } from '../services/login-register.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate{
-    constructor(private authService:LoginRegisterService,private router: Router){}
+    constructor(private authService:LoginRegisterService,private router: Router, private _common:CommonServiceService){}
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        const isAuth = this.authService.getIsAuth();
-        if (!isAuth) {
+        const authdetails = this._common.getAuthDetails();
+        if (!authdetails || authdetails.role != 'user') {
             this.router.navigate(['/login'])
         }
-        return isAuth;
+        return true;
     }
     
 }

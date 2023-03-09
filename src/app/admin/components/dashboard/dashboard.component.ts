@@ -6,13 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  menu=false;
   constructor() { }
 
   ngOnInit(): void {
   }
-  menuToggle(){
-    this.menu=!this.menu;
-  }
+  
 
 }
