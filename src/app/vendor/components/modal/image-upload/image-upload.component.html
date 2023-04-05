@@ -1,7 +1,7 @@
-<div class="flex items-center justify-center">
+<div class="flex max-h-screen items-center justify-center overflow-scroll">
 <div class="rounded items-center justify-center">
-  <img class="w-full h-full" src="../../../../../assets/images/user.png" alt="" *ngIf="!image">
-  <img class="w-full h-full" src="{{image}}" alt="" *ngIf="image">
+  <img class="w-fit h-fit" src="../../../../../assets/images/user.png" alt="" *ngIf="!image">
+  <img class="" src="{{image}}" alt="" *ngIf="image">
   <input type="file" (change)="imageSelect($event)"><br>
   <button mat-raised-button class="p-2 bg-green-900" (click)="onSave()">Save</button>
 </div>

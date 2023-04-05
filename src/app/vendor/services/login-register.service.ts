@@ -19,7 +19,7 @@ export class LoginRegisterService {
   registerVendor(form:registrationForm){
     this.http.post<{sign_up_vendor:boolean}>(`${environment.apiUrl}/vendor/sign-up`, form).subscribe(res => {
       if(res.sign_up_vendor == true){
-        this.router.navigate(['/login'])
+        this.router.navigate(['vendor/login'])
       }else{
         Swal.fire('This email or phone already registered')
       }
@@ -60,6 +60,10 @@ export class LoginRegisterService {
     this.vendorAuthStatusListener.next(false);
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
+    localStorage.removeItem('token');
+    localStorage.removeItem('role')
+    localStorage.removeItem('expiration')
+    this.router.navigate(['/vendor/login'])
   }
   private getAuthData(){
     const token = localStorage.getItem('vendorToken');
@@ -87,5 +91,13 @@ export class LoginRegisterService {
     localStorage.removeItem('expiration')
     localStorage.removeItem('role')
 
+  }
+  authGuard(){
+    const token = localStorage.getItem('token')
+    const role = localStorage.getItem('role')
+    if(!token || role != 'vendor'){
+      return false;
+    }
+    return true
   }
 }

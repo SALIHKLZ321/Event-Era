@@ -6,10 +6,19 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './common/interceptor/auth.interceptor';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ErrorPageComponent } from './common/error-page/error-page.component';
+import { GooglePayButtonModule } from '@google-pay/button-angular'
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { NgChartsModule } from 'ng2-charts';
+
+
+const config: SocketIoConfig = { url: 'http://localhost:8000', options: {} };
 
 @NgModule({
   declarations: [
     AppComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -17,6 +26,10 @@ import { AuthInterceptor } from './common/interceptor/auth.interceptor';
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
+    MatNativeDateModule,
+    GooglePayButtonModule,
+    NgChartsModule,
+    SocketIoModule.forRoot(config)
 ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true 

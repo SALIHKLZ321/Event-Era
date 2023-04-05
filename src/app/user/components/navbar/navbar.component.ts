@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {  ElementRef } from "@angular/core";
 import { LoginRegisterService } from 'src/app/user/services/login-register.service';
+import { iProfile } from '../../models/profile.model';
 
 @Component({
   selector: 'app-navbar',
@@ -10,9 +11,12 @@ import { LoginRegisterService } from 'src/app/user/services/login-register.servi
 })
 export class NavbarComponent implements OnInit, OnDestroy  {
   private authListenerSubs:Subscription | undefined;
+  user: iProfile | undefined;
   userAuth=false;
- userMenu=true;
- mainMenu=true;
+   
+  isList: number | undefined ;
+  isMenu: boolean = false;
+  isSearch: boolean = false;
 
   constructor(private el:ElementRef,private authService:LoginRegisterService) { }
   
@@ -23,12 +27,6 @@ export class NavbarComponent implements OnInit, OnDestroy  {
     })
   }
   
-  userMenuOpen(){
-    this.userMenu=!this.userMenu;
-  }
-  mainMenuOpen(){
-    this.mainMenu=!this.mainMenu
-  }
   onLogout(){
     this.authService.logout()
   }

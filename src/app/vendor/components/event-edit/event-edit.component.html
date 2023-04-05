@@ -1,0 +1,84 @@
+<section class="max-w-4xl p-6 mx-auto bg-black rounded-sm shadow-xl  dark:bg-gray-800 mt-20">
+    <h1 class="text-xl font-bold text-white capitalize dark:text-white">Account settings</h1>
+    <form (ngSubmit)="onSubmit()" [formGroup]="eventForm">
+        <div class="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 text-white">
+            <div class="sm:mt-4">
+                <mat-form-field class="example-form-field">
+                    <mat-label class="text-white">Title</mat-label>
+                    <input matInput type="text" formControlName="title">
+                    
+                  </mat-form-field>
+                
+            </div>
+
+            <div class="sm:mt-4">
+                <mat-form-field class="example-form-field">
+                  <mat-label class="text-white">Venue</mat-label>
+                  <input matInput type="text" formControlName="venue">
+                  </mat-form-field>
+            </div>
+             <div class="sm:mt-4">
+                <mat-form-field class="example-form-field">
+                    <mat-label class="text-white">Description</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                  </mat-form-field>
+            </div>
+            <div class="sm:mt-4">
+                <mat-form-field class="example-form-field">
+                    <mat-label class="text-white">Ticket price</mat-label>
+                    <input matInput type="number" formControlName="ticketPrice">
+                  </mat-form-field>
+            </div>
+            <div class="sm:mt-4 text-white">
+                <mat-form-field appearance="fill">
+                    <mat-label class="text-white">Date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker" class="text-white"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+            </div>
+            <div class="sm:mt-4">
+                <mat-form-field class="example-form-field">
+                    <mat-label class="text-white">Total Slots</mat-label>
+                    <input matInput type="number" formControlName="slots">
+                  </mat-form-field>
+            </div>
+            
+            <div class="sm:flex">
+                <label class="block text-sm font-medium text-black">
+                Image
+              </label>
+              <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md ">
+                <div class="space-y-1 text-center">
+                  <svg class="mx-auto h-12 w-12 text-black" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <div class="flex text-sm text-gray-600">
+                    <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                      <span class="">Upload a file</span>
+                      <input id="file-upload" name="file-upload" type="file" class="sr-only" (change)="imageSelected($event)" >
+                    </label>
+                    <p class="pl-1 text-white">or drag and drop</p>
+                  </div>
+                  <p class="text-xs text-white">
+                    PNG, JPG, GIF up to 10MB
+                  </p>
+                </div>
+              </div>
+              <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md w-[50%]" *ngIf="img_url">
+                  
+                  <img [src]="img_url" alt="" class="w-[100px] h-[100px]">
+                  
+                 
+              </div>
+
+            </div>
+        </div>
+        
+
+        <div class="flex justify-end mt-6">
+            <button mat-raised-button type="submit" class="px-6 py-2 leading-5 text-black transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Save</button>
+        </div>
+    </form>
+</section>

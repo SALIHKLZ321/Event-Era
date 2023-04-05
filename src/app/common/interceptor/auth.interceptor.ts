@@ -5,14 +5,18 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+
+import {catchError} from "rxjs/operators";
+import { Observable, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService:LoginRegisterService, private _common:CommonServiceService) {}
+  constructor(private authService:LoginRegisterService, private _common:CommonServiceService, private _router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler):Observable<HttpEvent<any>>{
     const authDetail = this._common.getAuthDetails();
@@ -21,8 +25,23 @@ export class AuthInterceptor implements HttpInterceptor {
     });
     
     if(authDetail == null){
-      return next.handle(request);
+      return next.handle(request)
+      
     }
-    return next.handle(authReq);
+    return next.handle(authReq).pipe(
+      catchError((error: HttpErrorResponse) => {
+         let errorMsg = '';
+         if (error.error instanceof ErrorEvent) {
+            console.log('This is client side error');
+            errorMsg = `Error: ${error.error.message}`;
+         } else {
+            console.log('This is server side error');
+            this._common.logout();
+            errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+         }
+         console.log(errorMsg);
+         return throwError(errorMsg);
+      })
+)
   }
 }

@@ -1,0 +1,78 @@
+<div class="w-screen h-full"  >
+    <div class="flex  justify-center items-center">
+        <div class="flex flex-col w-full justify-center items-center">
+
+            <h1 class="text-white pt-20 underline">Events</h1>
+            <div class="flex justify-center ">
+                <div class="mb-3 xl:w-96 ">
+                    <div class="relative mb-4 flex w-full flex-wrap items-stretch bg-[#d218aa68] shadow-lg">
+                        <input
+                        type="search"
+                        class="relative m-0 -mr-px block w-[1%] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:text-neutral-200 dark:placeholder:text-neutral-200"
+                        placeholder="Search"
+                        [(ngModel)]="searchData"
+                  aria-label="Search"
+                  aria-describedby="button-addon1" />
+                  <button
+                  class="relative z-[2] flex items-center rounded-r bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
+                  type="button"
+                  id="button-addon1"
+                  data-te-ripple-init
+                  data-te-ripple-color="light">
+                  <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="h-5 w-5">
+                  <path
+                  fill-rule="evenodd"
+                  d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                  clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class=" h-full w-full justify-center sm:flex grid grid-cols-4 gap-4" >
+        <div class="max-w-xs mx-auto sm:mx-0 p-10 grid grid-cols-4 gap-4" *ngFor="let event of events | eventSearch: searchData">
+            <div class="bg-[white] shadow-xl rounded  w-64">
+                
+                <div class="photo-wrapper p-2">
+                    <img class="w-32 sm:w-full shadow-lg rounded  mx-auto" src="{{event.image_url}}" alt="John Doe">
+                </div>
+                <div class="p-2">
+                    <p class="text-center text-bold text-2xl text-gray-900  leading-8">{{event.title}}</p>
+                    
+                    <table class="text-xs my-3">
+                        <tbody>
+                        <tr>
+                            <td class="px-2 py-2 text-gray-500 font-semibold">Venue</td>
+                            <td class="px-2 py-2">{{event.venue}}</td>
+                        </tr>
+                        <tr>
+                            <td class="px-2 py-2 text-gray-500 font-semibold">Date</td>
+                            <td class="px-2 py-2">{{event.date | date}}</td>
+                        </tr>
+                        <tr>
+                            <td class="px-2 py-2 text-gray-500 font-semibold"> Price </td>
+                            <td class="px-2 py-2">{{event.price | currency : 'INR' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="px-2 py-2 text-gray-500 font-semibold"> Vendor</td>
+                            <td class="px-2 py-2 text-blue-700" ><a routerLink="/vendor-details/{{event.vendor._id}}">{{event.vendor.firstName }} {{event.vendor.lastName}}</a></td>
+                        </tr>
+                    </tbody></table>
+        
+                    <div class="text-center my-3">
+                        <a class="text-xs p-2 bg-[#d218aa70] text-indigo-500 italic hover:underline hover:text-White font-medium cursor-pointer" routerLink="/event-details/{{event._id}}">Event Details</a>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+        
+        </div>
+
+</div>

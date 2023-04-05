@@ -1,5 +1,5 @@
 import { EventUploadService } from './../../services/event-upload.service';
-import { ievent } from './../../models/event.model';
+import { iEvent } from './../../models/event.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
-  events: ievent[] | null | undefined
+  events!: iEvent[] ;
   constructor(private _eventService: EventUploadService) { }
 
   ngOnInit(): void {

@@ -13,7 +13,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule} from '@angular/material/button';
-
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list'
 const materialModules=[
   MatMenuModule,
   MatIconModule,
@@ -28,6 +29,8 @@ const materialModules=[
   MatDatepickerModule,
   MatDialogModule,
   MatButtonModule,
+  MatDividerModule,
+  MatListModule
 ]
 
 

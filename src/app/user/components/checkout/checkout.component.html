@@ -1,0 +1,85 @@
+<div class="flex justify-center items-center p-10">
+    <div class="lg:container lg:mx-auto grid grid-cols-9 lg:grid-cols-12 shadow-md">
+        <div class="col-span-9 lg:col-span-8 xl:col-span-9 bg-white h-auto lg:max-h-full relative lg:px-10 p-6 lg:py-12">
+            <p>
+                <svg class="inline" width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 1L1 5L5 9" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span class="cursor-pointer text-gray-500 font-normal text-base ml-2.5">Back</span>
+            </p>
+            <h3 class="font-semibold text-gray-800 text-4xl mt-2">Payment</h3>
+    
+            <div class="mt-7 lg:mt-20">
+                    Quantity:
+                    <div class="flex flex-row h-10 w-20 rounded-lg relative bg-transparent mt-1 mb-3">
+                      <button data-action="decrement" class=" bg-gray-600 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none" (click)="quantityDec()" *ngIf="quantity>1">
+                        <span class="m-auto text-2xl font-thin text-white">−</span>
+                      </button>
+                      <input type="number" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" [(ngModel)]="quantity">
+                    <button data-action="increment" class="bg-gray-600 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer" (click)="quantityInc()">
+                      <span class="m-auto text-2xl font-thin text-white">+</span>
+                    </button>
+                  </div>
+                <p class="font-normal text-sm text-gray-600 mb-3">Your details</p>
+                <h3 class="text-2xl text-gray-800 font-medium">Enter your details</h3>
+    
+                <form class="mt-8" action="" autocomplete="off">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                        <input aria-label="emailAddress" class="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none" type="email" name="email" id="email" placeholder="Email address" />
+                        <input aria-label="yourName" class="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none" type="text" name="yourName" id="YourName" placeholder="Your name" />
+                        <input aria-label="phoneNumber" class="border-b-2 border-gray-300 pb-3 text-base text-gray-600 font-normal placeholder-gray-600 focus:outline-none" type="text" name="phoneNumber" id="phoneNumber" placeholder="Phone Number" />
+                    </div>
+                </form>
+            </div>
+    
+            <google-pay-button
+            environment="TEST"
+            buttonType="pay"
+            buttonColor="black"
+            [paymentRequest]="paymentRequest"
+            (loadpaymentdata)="onLoadPaymentData($event)"
+            (error)="onError($event)"
+            [paymentAuthorizedCallback]="onPaymentDataAuthorized"
+            ></google-pay-button><br>
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            
+            <button class="bg-gray-800 hover:bg-gray-900 text-white p-4 text-lg my-3 mt-10 w-full md:w-auto" (click)="makePayment(this.price)">Proceed to payment</button>
+        </div>
+        <div class="relative col-span-9 lg:col-span-4 xl:col-span-3 bg-gray-100 lg:h-auto xl:h-screen px-8 py-14 xl:px-12 xl:py-20">
+            <div class="flex flex-1">
+                <h3 class="text-gray-800 font-semibold text-2xl">Event Details</h3>
+                <div class="flex-auto"></div>
+            </div>
+    
+            <div class="mt-7 flex flex-1 text-gray-800 text-lg font-normal">
+                <h2>Title :</h2>
+                <h3 class="flex-auto text-right pr-4 md:pr-5 lg:pr-4"></h3>
+                <h3 class="pt-1">{{event.title}}</h3>
+            </div>
+    
+            <div class="mt-5 flex flex-1 text-gray-800 text-lg font-normal">
+                <h2>Location :</h2>
+                <h3 class="flex-auto text-right pr-7 md:pr-9 lg:pr-7"></h3>
+                <h3 class="pt-1">{{event.venue}}</h3>
+            </div>
+    
+            <div class="mt-5 flex flex-1 text-gray-800 text-lg font-normal">
+                <h2>Date :</h2>
+                <h3 class="flex-auto text-right pr-7 md:pr-9 lg:pr-7"></h3>
+                <h3 class="pt-1">{{event.date | date: 'dd/MM/yyyy'}}</h3>
+            </div>
+            <div class="mt-5 flex flex-1 text-gray-800 text-lg font-normal">
+                <h3 class="flex-auto text-right pr-7 md:pr-9 lg:pr-7"></h3>
+                <h3 class="pt-1">{{event.description}}</h3>
+            </div>
+            <div>
+                <img [src]="event.image_url" alt="">
+            </div>
+            <div class="-bottom-7 px-8 xl:px-12 pb-5 md:-bottom-96 bg-gray-100 md:pt-80 md:pb-10 lg:pb-10 lg:pt-0 lg:mt-0 lg:bottom-0 absolute left-0 w-full text-lg font-medium text-gray-800">
+                <span aria-label="Total" class="float-left text-2xl text-gray-800 font-normal">Total</span>
+                <span aria-label="Total Price" class="float-right font-semibold text-gray-800 text-2xl" >{{price ? price: event.price}}</span>
+                <div class="clear-both"></div>
+            </div>
+        </div>
+    </div>
+</div>

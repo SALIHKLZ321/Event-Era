@@ -1,4 +1,4 @@
-import { registrationForm } from './../../services/user.model';
+import { registrationForm } from '../../models/user.model';
 import { LoginRegisterService } from './../../services/login-register.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';

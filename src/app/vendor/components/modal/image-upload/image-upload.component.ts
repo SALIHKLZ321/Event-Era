@@ -41,11 +41,8 @@ export class ImageUploadComponent implements OnInit {
     const random = `${String(Math.random()*10)}${String(Date.now)}`
         const imageRef = ref(storage, `vendor/${random}/`);
         if (this.image){
-          alert(random);
-          alert(imageRef);
         await uploadString(imageRef, this.image, "data_url").then(async () => {
           const downloadURL = await getDownloadURL(imageRef);
-          alert(downloadURL)
           this._vendorService.profilePicUpload(downloadURL).subscribe((res)=>{
 
           })

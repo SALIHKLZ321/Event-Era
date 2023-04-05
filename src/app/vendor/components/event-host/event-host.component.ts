@@ -30,7 +30,7 @@ export class EventHostComponent implements OnInit {
     slots: new FormControl('',[Validators.required]),
   })
   selectedFile: File|undefined;
-  img_url: string | undefined;
+  img_url!: string ;
   constructor(private _eventService: EventUploadService) { }
   ngOnInit(): void {
   }
@@ -67,7 +67,6 @@ export class EventHostComponent implements OnInit {
             price: this.eventForm.controls.ticketPrice.value,
             image_url: downloadURL
           }
-          alert('here 1')
           this._eventService.eventUpload(form)
       })
       }
@@ -77,23 +76,6 @@ export class EventHostComponent implements OnInit {
   get submitForm(){
     return this.eventForm.controls
   }
-  // onUpload() {
-  //   if (!this.selectedFile) {
-  //     return;
-  //   }
-
-  //   const bucketName = 'event-era-events';
-  //   const folderName = 'Event';
-  //   const acl = 'public-read';
-
-  //   this._eventService.uploadFile(this.selectedFile, bucketName, folderName, acl)
-  //     .then((data) => {
-  //       console.log('Upload success:', data);
-  //     })
-  //     .catch((err) => {
-  //       console.error('Upload error:', err);
-  //     });
-  // }
 
 }
 function moment(value: string | null): Date {

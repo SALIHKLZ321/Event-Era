@@ -1,0 +1,38 @@
+<div class="px-4 py-12 w-screen">
+  <div
+    class="lg:max-w-[1440px] md:max-w-[744px]  mx-auto w-full bg-white lg:px-10 md:px-6 px-4 py-12"
+  >
+    <div class="md:flex justify-center gap-8 items-center">
+      <div>
+        <img
+          src="{{event.image_url}}"
+          alt="hair_care" class="lg:block md:hidden block"
+        />
+        <img src="{{event.image_url}}" alt="" class="lg:hidden md:block hidden">
+      </div>
+      <div>
+        <p
+          class="lg:text-4xl md:text-3xl text-3xl font-semibold md:text-left text-center"
+        >
+          {{event.title}}
+        </p>
+        <p
+          class="text-base text-gray-600 max-w-[624px] w-full mt-6 md:text-left text-center"
+        >
+          {{event.description}} <br>
+          <b>On {{event.date | date}}</b>
+        </p>
+        <button
+          class="bg-gray-800 text-base font-medium lg:max-w-[205px] w-full px-3 py-2 text-white mt-11 hover:bg-gray-700 transition duration-300 ease-in-out lg:block md:hidden blocl" routerLink="/event-details/{{event._id}}"
+        >
+          More Details
+        </button>
+      </div>
+    </div>
+    <button
+    class="bg-gray-800 text-base font-medium  w-full px-3 py-2 text-white mt-6 hover:bg-gray-700 transition duration-300 ease-in-out lg:hidden md:block hidden"
+  >
+    Buy Now
+  </button>
+  </div>
+</div>

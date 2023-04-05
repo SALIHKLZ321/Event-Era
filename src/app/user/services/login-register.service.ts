@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import  Swal from 'sweetalert2';
 import { Login } from './login.model';
-import { registrationForm } from './user.model';
+import { registrationForm } from '../models/user.model';
 import { environment } from 'src/environments/environment';
 
 
@@ -57,7 +57,11 @@ export class LoginRegisterService {
     return this.authStatusListener.asObservable()
   }
   getIsAuth(){
-    return this.userAuth
+    if(localStorage.getItem('token') && localStorage.getItem('role') == 'user'){
+      return true;
+    }else{
+      return false
+    }
   }
   logout(){
     this.token=null;
@@ -65,6 +69,7 @@ export class LoginRegisterService {
     this.authStatusListener.next(false);
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
+    this.router.navigate(['/login'])
   }
   autoAuthUser() {
     const authInfo = this.getAuthData();
@@ -74,7 +79,7 @@ export class LoginRegisterService {
     const now=new Date();
     const expiresIn = authInfo!.expirationDate.getTime() - now.getTime();
     if (expiresIn>0) {
-      this.token=authInfo!.token;
+      this.token=authInfo.token;
       this.userAuth=true;
       this.setAuthTimer(expiresIn/1000);
       this.authStatusListener.next(true);
@@ -93,7 +98,8 @@ export class LoginRegisterService {
   private getAuthData(){
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expirationDate');
-    if (!token || !expirationDate) {
+    const role = localStorage.getItem('role');
+    if (!token || !expirationDate || role != 'user') {
       return;
     }
     return {

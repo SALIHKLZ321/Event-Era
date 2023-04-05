@@ -1,0 +1,109 @@
+<div class="flex flex-row ">
+    <div>
+        <app-sidebar></app-sidebar>
+    </div>
+
+<div class="flex min-h-screen w-screen justify-center items-center ">
+
+
+    <div class="2xl:container  2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-12 shadow-xl bg-slate-200 px-6 flex-row justify-center items-center">
+        <div class="flex justify-center items-center lg:flex-row flex-col gap-8">
+            <!-- Description Div -->
+    
+            <div class="w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center pt-5">
+                <h2 class="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4">{{event.title}}</h2>
+    
+                <div class="flex flex-row justify-between mt-5">
+                    
+                </div>
+    
+                <p class="font-normal text-base leading-6 text-gray-600 mt-7">{{event.description}}</p>
+                <p class="font-bold text-base leading-6 text-gray-600 mt-7">Remaining : {{event.slots}} slots</p>
+                <!-- <p class="font-bold text-base leading-6 text-gray-600 mt-7">{{event?.slots}}</p> -->
+                <p class="font-bold text-base leading-6 text-gray-600 mt-7">{{event.date | date }} </p>
+                
+                <p class="font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6">{{event.price | currency:'INR'}}</p>
+    
+                
+    
+                <button class="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-[#d218aa70] w-full py-5 lg:mt-12 mt-6" (click)="openModal()">Edit</button>
+            </div>
+    
+            <!-- Preview Images Div For larger Screen-->
+    
+            <div class="w-full sm:w-96 md:w-8/12 lg:w-6/12 flex justify-center lg:gap-8 sm:gap-6 gap-4 ">
+                <div class="w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
+                    <img [src]="event.image_url" alt="Wooden Chair Previw" />
+                </div>
+                
+            </div>
+        </div>
+        <div class="w-full mx-auto mb-4 my-6 flex  shadow sm:px-10 px-4 py-6 bg-white dark:bg-gray-800 rounded-md">
+            <body class="flex items-center justify-center py-8 px-2 w-full">
+                <div class="w-full sm:px-6">
+                    <div class="px-4 md:px-10 py-4 md:py-7 bg-gray-100 rounded-tl-lg rounded-tr-lg">
+                        <div class="sm:flex items-center justify-between">
+                            <p class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Events</p>
+                            
+                        </div>
+                    </div>
+                    <div class="bg-white shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
+                        <table class="w-full whitespace-nowrap">
+                            <thead>
+                                <tr class="h-16 w-full text-sm leading-none text-gray-800">
+                                    <th class="font-normal text-center pl-16">Ticket Id</th>
+                                    <th class="font-normal text-center pl-4">User Name</th>
+                                    <th class="font-normal text-center pl-12">Email</th>
+                                    <th class="font-normal text-center pl-12">Phone</th>
+                                    <th class="font-normal text-center pl-20">Quantity</th>
+                                    <th class="font-normal text-center pl-20">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody class="w-full">
+                                <tr class="h-20 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100" *ngFor="let ticket of tickets">
+                                    <td class="pl-4 cursor-pointer">
+                                        <div class="flex items-center justify-center">
+                                            <div class="pl-4 flex items-center justify-center">
+                                                <p class="font-medium">{{ticket._id}}</p>
+                                            </div>
+                                            
+                                        </div>
+                                    </td>
+                                    <td class="pl-12">
+                                        <div class="pl-4 flex items-center justify-center">
+                                            <p class="font-medium">{{ticket.user.firstName}} {{ticket.user.lastName}}</p>
+                                        </div>
+                                    </td>
+                                    <td class="pl-12">
+                                        <div class="pl-4 flex items-center justify-center">
+                                            <p class="font-medium">{{ticket.user.email}}</p>
+                                        </div>
+                                    </td>
+                                    <td class="pl-20">
+                                        <div class="pl-4 flex items-center justify-center">
+                                            <p class="font-medium">{{ticket.user.phone}}</p>
+                                        </div>
+                                    </td>
+                                    <td class="pl-20">
+                                        <div class="pl-4 flex items-center justify-center">
+                                            <p class="font-medium">{{ticket.quantity}}</p>
+                                        </div>
+                                    </td>
+                                    <td class="pl-16">
+                                        <div class="pl-4 flex items-center justify-center">
+                                            <p class="font-medium">{{ticket.total | currency : 'INR'}}</p>
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </body>
+        </div>
+        
+    </div>
+    </div>
+</div>
