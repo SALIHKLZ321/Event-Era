@@ -12,4 +12,5 @@ export interface iUser{
     email: string;
     phone: number;
     image: string;
+    wallet: number;
 }

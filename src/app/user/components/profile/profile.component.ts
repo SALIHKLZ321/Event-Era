@@ -10,6 +10,7 @@ import { UserService } from '../../services/user.service';
 export class ProfileComponent implements OnInit {
   user!: iUser ;
   tickets!: any[];
+  wallet: any;
   constructor(private _userService: UserService) { }
 
   ngOnInit(): void {
@@ -21,6 +22,11 @@ export class ProfileComponent implements OnInit {
       console.log(res.tickets);
       this.tickets = res.tickets
     })
+  }
+  parentFunc(total: number){
+    alert(total)
+    this.user.wallet = this.user.wallet + total
+    
   }
   
 

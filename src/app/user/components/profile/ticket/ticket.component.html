@@ -1,11 +1,17 @@
 <div class="py-2" *ngFor="let ticket of tickets">
-	<div class="ticket p-3" >
+	<div class="ticket p-3 " >
 		<div class="left">
 			<div class="image" style="background-image: url('{{ticket.event.image_url}}');">
-				<p class="admit-one">
+
+				<p class="admit-one" *ngIf="ticket.status == 'Active'">
 					<span>ADMIT {{ticket.quantity}}</span>
 					<span>ADMIT {{ticket.quantity}}</span>
 					<span>ADMIT {{ticket.quantity}}</span>
+				</p>
+				<p class="admit-one text-red-700" *ngIf="ticket.status == 'Cancelled'">
+					<span class="text-red-700">ADMIT Cancelled</span>
+					<span class="text-red-700">ADMIT Cancelled</span>
+					<span class="text-red-700">ADMIT Cancelled</span>
 				</p>
 				<div class="ticket-number">
 					<p>
@@ -13,11 +19,16 @@
 					</p>
 				</div>
 			</div>
-			<div class="ticket-info">
-				<p class="date">
+			<div class="ticket-info w-full" [ngClass]="{'bg-red-500':ticket.status == 'Cancelled'}">
+				<p class="date" *ngIf="ticket.status == 'Active'">
 					<span>{{ticket.event.date | date : 'EEEE'}}</span>
 					<span class="june-29">{{ticket.event.date | date : 'MMM d' }}</span>
 					<span>{{ticket.event.date | date : 'y'}}</span>
+				</p>
+				<p class="date" *ngIf="ticket.status == 'Cancelled'">
+					<span>Cancelled</span>
+					<span class="june-29">Cancelled</span>
+					<span>Cancelled</span>
 				</p>
 				<div class="show-name">
 					<h1>{{ticket.event.title}}</h1>
@@ -32,7 +43,7 @@
 				</p>
 			</div>
 		</div>
-		<div class="right">
+		<div class="right flex justify-end items-end">
 			<p class="admit-one">
 				<span>ADMIT {{ticket.quantity}}</span>
 				<span>ADMIT {{ticket.quantity}}</span>
@@ -53,4 +64,6 @@
 			</div>
 		</div>
 	</div>
+	<button class="p-3 bg-red-600 mt-1 mb-3 rounded uppercase text-bold" (click)="cancelEvent(ticket._id)" *ngIf="ticket.status == 'Active'">cancel this event</button>
+
 </div>
