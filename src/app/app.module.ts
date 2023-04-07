@@ -11,9 +11,10 @@ import { ErrorPageComponent } from './common/error-page/error-page.component';
 import { GooglePayButtonModule } from '@google-pay/button-angular'
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { NgChartsModule } from 'ng2-charts';
+import { environment } from 'src/environments/environment';
 
 
-const config: SocketIoConfig = { url: 'http://localhost:8000', options: {} };
+const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
 
 @NgModule({
   declarations: [
